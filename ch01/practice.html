@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Basic HTML/CSS/JS</title>
+        <style>
+            h1.drink  {
+                color: brown;
+            }
+            
+            p {
+                font-family: sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <h1  class="drink">Mocha Caffe Latte</h1>
+        <p>Espresso, steamed milk, and chocolate syrup, just the way you like it.</p>
+        
+        <script>
+        /* Some Javascript, I don't know what yet, goes here */
+            var age = 25;
+            var name = "Owen";
+            
+            if (age > 14) {
+                document.write("Sorry, this page is for kids only!");
+                alert("Sorry, this page is for kids only!");
+            } else {
+                document.write("Welcome " + name + "!");
+                alert("Welcome " + name + "!");
+            }
+            
+            //Test for jokes
+            var joke  = "Javascript walked into a bar....";
+            var toldJoke = false;
+            var punchline =
+                "Better watch out for those semi-colons.";
+            var percentage = 20;
+            var result;
+            
+            if (toldJoke == true) {
+                alert(punchline);
+            } else {
+                alert(joke);
+            }
+            
+            //Movie Night
+            var zipCode = 98104;
+            var joesFavoriteMovie = "Forbidden Planet";
+            var movieTicket$ = 9;
+            
+            if (movieTicket$ >= 9) {
+                alert("Too much!");
+            } else {
+                alert("We're going to see " + joesFavoriteMovie);
+            }
+            
+        </script>
+        <!-- Name: Claire Saliers
+             Lesson: Week 1
+        -->
+        
+    </body>  
+</html>
