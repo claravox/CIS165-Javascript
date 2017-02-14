@@ -27,33 +27,30 @@
         
         <h2>Chai Tea, $1.85</h2>
         <p>A spicy drink made with black tea, spices, milk, and honey.</p>
-        
         <script>
-            //This statement declares a variable named suggestion
+            //This statement declares a variable named suggestion.
             var suggestion;
             
-            //Create a choice variable using the Math object with a method of floor
-            //Randomize the chances 50-50
+            //Create a choice variable using the Math object with the method of floor.
+            //Randomize the chances to be 50-50.
             var choice = Math.floor(Math.random() * 2);
-        
+            
             if (choice == 0) {
-                //This statement initializes the variable named suggestion and assigns a value
+                //Initialize the variable called suggestion and assign a value of "House Blend".
                 suggestion = "House Blend";
             } else {
-                //This statement assigns a new value to suggestion
+                //Assign a new value to suggestion.
                 suggestion = "Mocha Caffee Latte";
             }
-           
-            //Use the concatention operator + to combine string text and a variable together
+            
+            //Use the + to concatenate a string and a variable together.
             var message = "May we suggest a " + suggestion + " today";
             
-            //Create an alert function with string text containing your message
+            //Create an alert function with string text containing the message.
             alert(message);
         </script>
-        
-            <!--    Name: Claire Saliers
-                    Project: Chapter 1 starbuzz.html
-                    Description: Dive into Javascript video
-             -->
+        <!-- Name: Claire Saliers
+             Description: Chapter 1 Add alert message to starbuzz file
+        -->
     </body>
 </html>
