@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Dice Roll</title>
+    </head>
+    <body>
+        
+        <script>
+        var dice1 = Math.floor(Math.random() *6) + 1; //Create a number between 1 and 6 for the first die.
+        var dice2 = Math.floor(Math.random() *6) + 1; //Create a number between 1 and 6 for the secord die.
+        var stats = "You rolled " + dice1 + " and " + dice2 + " for a total of " + (dice1 + dice2) + ".";
+        document.write(stats); //Display the value of dice1 and dice2, and the total.
+        
+        if (dice1 == dice2) { //Check if the dice values are the same.
+            var doubles = " DOUBLES! You get a free turn!";
+            document.write(doubles); /*Display that the user got doubles and display it after document.write of the variable stats. */
+        }
+        
+        </script>
+        <!-- Name: Claire Saliers
+             Lesson: Chapter 2: Going Further -- Dice Roll
+        -->
+        
+    </body>  
+</html>
