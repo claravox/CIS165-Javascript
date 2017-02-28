@@ -1,7 +1,7 @@
 /* It's been raining a lot recently so this gave me the idea of creating a function to check the weather. However, I don't know how I'd actually do that based on real data, so instead I have a randomly generated number as the chance of weather. */
 
 function predictWeather(weatherType) {
-    var chance;
+    var chance; //This is the chance of the type of weather occuring.
     chance = Math.floor(Math.random() * 101); //Randomly generate a number anywhere from 0 to 100.
     document.write("The chance of " + weatherType + " is " + chance + "%. "); 
     if (chance < 50) { //If the chance is less than 50%, print that the weather type isn't so likely.
