@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bubble Factory Test Lab</title>
+    </head>
+    <body>
+        
+        <script>
+        //The array stores the scores for each bubble solution test.
+        var scores = [60, 50, 60, 58, 54, 54,
+                      58, 50, 52, 54, 48, 69, 
+                      34, 55, 51, 52, 44, 51,
+                      69, 64, 66, 55, 52, 61,
+                      46, 31, 57, 52, 44, 18,
+                      41, 53, 55, 61, 51, 44];
+        
+        /* The costs array stores the cost of each bubble solution. Each index corresponds to the index in the scores array. */
+        var costs = [.25, .27, .25, .25, .25, .25,
+			         .33, .31, .25, .29, .27, .22,
+			         .31, .25, .25, .33, .21, .25,
+			         .25, .25, .28, .25, .24, .22,
+			         .20, .25, .30, .25, .24, .25,
+			         .25, .25, .27, .25, .26, .29];
+        
+            
+        function printAndGetHighScore(scores) {
+            var highScore = 0; //This initilizes the lowest high score possibe.
+            var output; //This stores what will be printed about the scores.
+            for (var i = 0; i < scores.length; i++) { //The for loop will go through all the indexes in the array.
+                output = "Bubble Solution #" + i + " score: " + scores[i] + " cost: " + costs[i] + "<br>"; //This will output all scores in the browser.
+                document.write(output); 
+                if (scores[i] > highScore) { //Now testing for highest score.
+                    highScore = scores[i]; //Each highScore will overwrite the one before it.
+                }
+            }
+            return highScore;
+        }
+            
+        function getBestResults(scores, highScore) { //This will determine which bubble solutions have the high score.
+            var bestSolutions = []; //Store the array best solutions for later.
+        
+            for (var i = 0; i < scores.length; i++) {
+                if (scores[i] == highScore) { //If a score equals the highscore as determined earlier,
+                    bestSolutions.push(i); //   add it to the array bestSolutions.
+                }
+            }
+            return bestSolutions;
+        }
+           
+        function getMostCostEffectiveSolution(scores, costs, highScore) { //Find the bubble solutions that have a highscore, and determine which is the cheapest.
+            var cost = 100; //Set the highest possible cost to be 100.
+            var index; //Store what will be the cheapest solution.
+            
+            for (var i = 0; i < scores.length; i++) {
+                
+                //Loop through scores to see which one is a high score.
+                if (scores[i] == highScore) { 
+                    if (cost > costs[i]) {  //Test if the cost of the solution is less than that of 100.
+                        index = i; //Set index to index of the bubble solution.
+                        cost = costs[i]; //Set cost to equal that of the cost of index. That way, when the for loop iterates again it can look for an even cheaper solution.
+                        
+                    }
+                }
+            }
+            return index;
+        }
+            
+        //Set highScore to the function printAndGetHighScore, passing the scores array.
+        var highScore = printAndGetHighScore(scores); 
+        
+        //Find the best solutions using the function getBestResults, passing the scores array and highScore.
+        var bestSolutions = getBestResults(scores, highScore);
+        
+        //Find the most cost effective solution using the function getMostCostEffectiveSolution and passing it the scores array, the costs array, and highScore.
+        var mostCostEffective = getMostCostEffectiveSolution(scores, costs, highScore);
+            
+        document.write("Bubbles tests: " + scores.length + "<br>");
+        document.write("Highest bubble score: " + highScore + "<br>");     
+        document.write("Solutions with highest score: " + bestSolutions + "<br>");
+        document.write("Bubble Solution #" + mostCostEffective + " is the most cost effective.");
+
+        </script>
+        <!-- Name: Claire Saliers
+             Lesson: Chapter 4 -- Array Practice
+        -->
+        
+    </body>  
+</html>

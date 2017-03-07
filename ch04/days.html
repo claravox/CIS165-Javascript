@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Days of the Week</title>
+    </head>
+    <body>
+        
+        <script>
+        //The array has the days of the week, in order.
+        var daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        
+        //This function demonstrates a for loop. You can pass in any array.
+        function forLoop(array) {
+            document.write("This script uses the for loop: <br>")
+            for (var i = 0; i < daysOfTheWeek.length; i++) {
+                document.write(daysOfTheWeek[i] + "<br>"); //Write the contents of each index.
+            }
+            
+            //This adds some line space and a line break for the next block.
+            document.write("<br><hr>"); 
+        }
+        
+        //This function demonstrates a while loop. You can pass in any array.
+        function whileLoop(array) {
+            document.write("This script uses the while loop: <br>")
+            var i = 0;
+            while (i < daysOfTheWeek.length) {
+                document.write(daysOfTheWeek[i] + "<br>"); //Write the contents of each index.
+                i++;
+            }
+            document.write("<br><hr>"); //Add some space and a line.
+        }
+        
+        /*This function will join the indexes of an array together. You can pass it an array, what character to join it together with (such as a comma or a line break), and a note. */
+        function joinArray(array, commaSubstitute = ",", note = "") {
+            document.write("This script uses the join function:<br>");
+            
+            //This will write the array joined together to the page.
+            document.write(array.join(commaSubstitute));
+            document.write("<br>" + note + "<br><hr>");
+        }
+            
+        //Executes forLoop function, passing the array daysOfTheWeek.
+        forLoop(daysOfTheWeek);
+        
+        //Executes whileLoop function, also passing the array daysOfTheWeek.
+        whileLoop(daysOfTheWeek);
+        
+        //Executes the basic joinArray function.
+        joinArray(daysOfTheWeek);
+        
+        //Executes the joinArray function, using a line break for spacing.
+        joinArray(daysOfTheWeek, "<br>", "This function uses the join function using the br tag.");
+            
+        </script>
+        <!-- Name: Claire Saliers
+             Lesson: Chapter 4 -- Days of the Week
+        -->
+        
+    </body>  
+</html>
