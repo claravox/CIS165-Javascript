@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Car Properties Practice</title>
+        <style>h1 { color: brown; } </style>
+    </head>
+    <body>
+        <h1>Chapter 5 Javascript Objects</h1>
+        <script>
+        //Make an object for each car. This one is for a Chevy. I will describe the methods and properties for chevy, but won't redescribe them for the other cars except if there is a new method, such as in the fiat object.
+        var chevy = {
+            make: "Chevy",
+            model: "Bel Air",
+            year: 1957,
+            color: "red",
+            passagers: 2,
+            convertible: false,
+            mileage: 1021,
+            started: false, //Hold that the car's default is not started.
+            start: function() { //To start car, change this.started to true.
+                this.started = true;
+            },
+            stop: function() { //To stop the car, change this.started to false.
+                this.started = false;
+            },
+            drive: function() {
+                if (this.started) { //To drive, first make sure the car is started.
+                    //Then alert that the car is driving.
+                    alert(this.make + " " + this.model + " goes zoom zoom!");
+                } else {
+                    //If the car isn't started, notify what the user can do about it.
+				    alert("You need to start the engine first.");
+                }
+            }
+        };
+        
+        var taxi = {
+            make: "Webville Motors",
+            model: "Taxi",
+            year: 1955,
+            color: "yellow",
+            passagers: 4,
+            convertible: false,
+            mileage: 281341,
+            started: false,
+            start: function() {
+                this.started = true;
+            },
+            stop: function() { 
+                this.started = false;
+            },
+            drive: function() {
+                if (this.started) {
+                    alert(this.make + " " + this.model + " goes zoom zoom!");
+                } else {
+				    alert("You need to start the engine first.");
+                }
+            }
+        };
+        
+        var cadi = {
+            make: "GM",
+            model: "Cadillac",
+            year: 1955,
+            color: "tan",
+            passagers: 5,
+            convertible: false,
+            mileage: 12892,
+            started: false,
+            start: function() {
+                this.started = true;
+            },
+            stop: function() { 
+                this.started = false;
+            },
+            drive: function() {
+                if (this.started) {
+                    alert(this.make + " " + this.model + " goes zoom zoom!");
+                } else {
+				    alert("You need to start the engine first.");
+                }
+            }
+        };
+        
+        var fiat = {
+            make: "Fiat",
+            model: "500",
+            year: 1957,
+            color: "Medium Blue",
+            passagers: 2,
+            convertible: false,
+            mileage: 88000,
+            started: false,
+            fuel: 0, //Hold that the car starts with no fuel.
+            start: function() {
+                this.started = true;
+            },
+            stop: function() { 
+                this.started = false;
+            },
+            drive: function() {
+                if (this.started) {
+                    if (this.fuel > 0) {
+                        //If the car has fuel and is started, drive.
+                        alert(this.make + " " + this.model + " goes zoom zoom!");
+                        this.fuel = this.fuel - 1; //Remove some fuel.
+                    } else { 
+                        //If the car doesn't have fuel let the user know, and turn started to false.
+                        alert("Uh oh, out of fuel");
+                        this.stop();
+                    }
+                } else {
+                    //If the car isn't started, let the user know.
+				    alert("You need to start the engine first.");
+                }
+            },
+            addFuel: function(amount) {
+                //Add a certain amount of fuel, which is passed to the function.
+                this.fuel = this.fuel + amount;
+            }
+        };
+        
+        //Test out the fiat's extra functionality.
+        /*fiat.start();
+        fiat.drive();
+        fiat.addFuel(2);
+        fiat.start();
+        fiat.drive();
+        fiat.drive();
+        fiat.drive();
+        fiat.stop();*/
+        
+        //Test driving the other cars as well.
+        cadi.start();
+        cadi.drive();
+        cadi.stop();
+        
+        taxi.start();
+        taxi.drive();
+        taxi.stop();    
+        
+        chevy.start();
+        chevy.drive();
+        chevy.stop();  
+
+        </script>
+        <!-- Name: Claire Saliers
+             Lesson: Chapter 5 Javascript Objects
+        -->
+        
+    </body>  
+</html>

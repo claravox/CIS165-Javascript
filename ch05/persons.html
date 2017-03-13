@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>My Person's Objects</title>
+    </head>
+    <body>
+        
+        <script>
+        //Create an object to store info about Claire, and also a total height method.
+        var claire = {
+            firstName: "Claire",
+            lastName: "Saliers",
+            age: 17,
+            heightFt: 5,
+            heightIn: 6,
+            eyeColor: "Blue",
+            relationship: "self",
+            totalHeight: function() {
+                //Multiply height in feet by 12 and add it to inches to find total height in inches.
+                var feetInches = (this.heightFt * 12) + this.heightIn;
+                //Write result to the page.
+                document.write(this.firstName + " is " + feetInches + " inches tall.<br><br>");
+                //Return feetInches incase you want to do something else with the result.
+                return feetInches;
+            }
+        };
+            
+        //Object to store info about Mark, and also a total height method.
+        var mark = {
+            firstName: "Mark",
+            lastName: claire.lastName,
+            age: 44,
+            heightFt: 6,
+            heightIn: 1,
+            eyeColor: "Teal",
+            relationship: "father",
+            totalHeight: function() { //Same totalHeight method as before.
+                var feetInches = (this.heightFt * 12) + this.heightIn;
+                document.write(this.firstName + " is " + feetInches + " inches tall.<br><br>");
+                return feetInches;
+            }
+        };    
+            
+        //Display all properties of a passed object.
+        function displayPropertiesOfObject(object) { 
+            document.write("All properties of " + object.firstName + ":<br>");
+            //I used the way you demonstrated in the tutorial.
+            for (var prop in object) {
+                document.write(prop + ": " + object[prop] + "<br>");
+                //Unfortunately the method totalHeight makes this look messy.
+            }
+            document.write("<br>");
+        }
+        
+        //Run the method totalHeight for mark and claire.
+        mark.totalHeight();
+        claire.totalHeight();
+            
+        //Run the function displayPropertiesOfObject, passing the objects claire and mark.
+        displayPropertiesOfObject(claire);
+        displayPropertiesOfObject(mark);
+        </script>
+        <!-- Name: Claire Saliers
+             Lesson: Ch 5 My Person's Objects
+        -->
+        
+    </body>  
+</html>
