@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>My Playlist</title>
+    </head>
+    <body>
+
+        <script>
+        function addSongs() {
+            //First define each song variable as an element in the DOM.
+            var song1 = document.getElementById('song1');
+            var song2 = document.getElementById('song2');
+            var song3 = document.getElementById('song3');
+            var song4 = document.getElementById('song4');
+            var song5 = document.getElementById('song5');
+            //Now assign each variable's inner HTML some text.
+            //My dad helped me come up with these parody names. Blame him.
+            song1.innerHTML = "Javascript is Painless by Mashup";
+            song2.innerHTML = "The Sounds of Cylons by The Galactica Chorus";
+            song3.innerHTML = "Just a Spoonful of Javascript Makes the DOM Go Down by Mary Popular";
+            song4.innerHTML = "All the Burning Cellphones that Have Callen After Me by The Seven Notes";
+            song5.innerHTML = "You're Nothing but a Code-Hound by Elvis Presskeys";
+        }
+
+        window.onload = addSongs;
+        </script>
+        <h1>My okay playlist</h1>
+        <ul id="playlist">
+            <li id="song1"></li>
+            <li id="song2"></li>
+            <li id="song3"></li>
+            <li id="song4"></li>
+            <li id="song5"></li>
+
+        </ul>
+
+        <!-- Name: Claire Saliers
+             Lesson: Chapter 6 -- Playlist
+        -->
+
+    </body>
+</html>
