@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Fixing Capitalization of High Schools</title>
+    </head>
+    <body>
+        <h1>Chula Vista High Schools</h1>
+        <div id="info"></div>
+        <script>
+        //Initialize the variable msg to contain a string. This will hold the info of before and after capitalization.
+        var msg = "";
+
+        //This contains all the schools with the incorrect capitalization.
+        var schools = ["eastLAKe", "montGOMEry", "hillTOP", "olymPIAN", "sweetWATer", "southWESt"];
+
+        function fixCapital(schools) {
+            var resultArray = []; //Initialize an array to add each capitalized result to.
+            for (var i = 0; i < schools.length ; i++) {
+                //This takes each string at each index and makes it all lowercase.
+                var inputLowerCase = schools[i].toLowerCase();
+
+                //This stores the first letter of each string and makes it capitalized.
+                var firstLetter = inputLowerCase.charAt(0).toUpperCase();
+
+                //This combines the uppercase first letter with the rest of the string inputLowerCase after the first character.
+                var result = firstLetter + inputLowerCase.substring(1);
+
+                //This pushes the result to an array for future use.
+                resultArray.push(result);
+            }
+            for (var i = 0; i < schools.length ; i++) {
+                //This shows the before and after in a human-readable form. The two arrays are parallel.
+                msg += "<p>Before Capitalization: " + schools[i] + " After Capitalization: " + resultArray[i] + "</p>";
+            }
+            return resultArray;
+        }
+
+        fixCapital(schools);
+
+        //I used the strategy from string_object.html of adding to the div element
+        var element = document.getElementById('info');
+    	element.innerHTML = msg; //Now put the contents of msg into the inner HTML.
+        </script>
+        <!-- Name: Claire Saliers
+             Lesson: Chapter 7 Types -- Fixing Capitalization of High Schools
+        -->
+
+    </body>
+</html>
