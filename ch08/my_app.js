@@ -1,4 +1,5 @@
 var view = {
+    //This controls how the page will look after pressing enter.
     displayListItems: function(listArray, priorityArray) {
         document.write("<h2>High Priority Things to Do:</h2>");
         /*I think document.write must delete all things on a page,
@@ -20,6 +21,7 @@ var view = {
 };
 
 var controller = {
+    //This controls how the arrays are created.
     addToList: function(listArray, todoInput) {
         listArray.push(todoInput);
         return listArray;
