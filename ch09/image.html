@@ -15,6 +15,7 @@
     <body>
         <h1>Welcome to My Image Gallery!</h1>
         <p>Click on any picture to make it unblurred and also framed.</p>
+        <p>Hover above any painting after clicking on it to see the title.</p>
         <img src="zeroblur.jpg" id="zero">
         <img src="oneblur.jpg" id="one">
         <img src="twoblur.jpg" id="two">
@@ -23,28 +24,42 @@
         <img src="fiveblur.jpg" id="five">
         <script>
         window.onload = init;
+
+        //I need this array to make sure the tooltips go to the right painting.
+        var tooltipNumbers = ["zero", "one", "two", "three", "four", "five"];
+
+        //This will show up when you hover over a painting.
+        var tooltips = ["The Mona Lisa", "Picasso Vector", "Watercolor Sunflowers", "Painting of town, angels and eyes.", "Boats on Coast Lake", "Sunflowers" ];
+
         function init() {
             var images = document.getElementsByTagName("img");
             for (var i = 0; i < images.length; i++) {
                 images[i].onclick = showBorderAndAnswer;
+                images[i].onmouseover = showLabel;
             }
         }
 
         function showBorderAndAnswer(eventObj) {
             var image = eventObj.target;
-            console.log(image);
+
+            //This will set the class that adds the picture frame around the clicked image.
             image.setAttribute("class", "framed");
-            console.log(image);
             var name = image.id;
             name = name + ".jpg";
             image.src = name;
-            image.onclick = reblur;
         }
 
-        function reblur(image) {
-            var name = image.id;
-            name = name + "blur.jpg";
-            image.src = name;
+        function showLabel(eventObj) {
+            var image = eventObj.target;
+            console.log(image);
+            for (var i = 0; i < tooltips.length; i++) {
+
+                //Only show a tooltip if the painting has been clicked and has the matching tooltip.
+                if (image.className == "framed" && image.id == tooltipNumbers[i]) {
+                    image.setAttribute("title", tooltips[i]);
+                }
+            }
+
         }
         </script>
         <!-- Name: Claire Saliers
