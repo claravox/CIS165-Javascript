@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>My Image Gallery</title>
+        <style>
+            body { margin: 20px; };
+            img { margin: 20px;};
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to My Image Gallery!</h1>
+        <div id="drop_zone">Drop the blurred picture here to add it to the gallery!</div>
+        <br><br>
+        <div id="drop_zone_unblurred">Drop the unblurred version here:</div>
+        <br>
+        <img src="zeroblur.jpg" id="zero">
+        <img src="oneblur.jpg" id="one">
+        <img src="twoblur.jpg" id="two">
+        <img src="threeblur.jpg" id="three">
+        <img src="fourblur.jpg" id="four">
+        <img src="fiveblur.jpg" id="five">
+        <div id="droppedpics">
+        </div>
+        <script>
+        window.onload = init;
+        function init() {
+            var images = document.getElementsByTagName("img");
+            for (var i = 0; i < images.length; i++) {
+                images[i].onclick = showAnswer;
+            }
+            // Setup the dnd listeners.
+            var dropZone = document.getElementById("drop_zone");
+            dropZone.addEventListener("dragover", handleDragOver, false);
+            dropZone.addEventListener("drop", handleFileSelect, false);
+
+            //dnd listeners for unblurred version.
+            var dropZoneUnblurred = document.getElementById("drop_zone_unblurred");
+            dropZoneUnblurred.addEventListener("dragover", handleDragOverUnblurred, false);
+            dropZoneUnblurred.addEventListener("drop", handleFileSelect, false);
+        }
+
+        function showAnswer(eventObj) {
+            var image = eventObj.target;
+            var name = image.id;
+            name = name + ".jpg";
+            image.src = name;
+            setTimeout(reblur, 2000, image);
+        }
+
+        function handleFileSelect(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+
+            var files = evt.dataTransfer.files; // FileList object.
+            console.log(files);
+            var image = document.createElement("img");
+            image.setAttribute("src", files[0].name);
+            var imageId = files[0].name.slice(0,-4);
+            console.log(imageId);
+            image.setAttribute("id", imageId);
+            document.getElementById("droppedpics").appendChild(image);
+        }
+
+        function handleDragOver(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+            evt.dataTransfer.dropEffect = "copy"; // Explicitly show this is a copy.
+        }
+
+        function handleDragOver(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+            evt.dataTransfer.dropEffect = "copy"; // Explicitly show this is a copy.
+        }
+        
+        function reblur(image) {
+            var name = image.id;
+            name = name + "blur.jpg";
+            image.src = name;
+        }
+        </script>
+        <!-- Name: Claire Saliers
+             Lesson: Chapter 9 Handling Events
+        -->
+
+    </body>
+</html>
