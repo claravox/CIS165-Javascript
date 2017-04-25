@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Animate!</title>
+        <style>
+        body {
+            background-image: url("images/threeblur.jpg");
+            background-size: cover;
+            color: white;
+            font-size: 150%;
+            width: 500px;
+        }
+
+        #mona {
+            position: relative;
+        }
+
+        #arrow-keys {
+            width: 200px;
+            text-align: justify;
+        }
+
+        #up {
+            text-align: center;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Animate!</h1>
+        <p>Click on one of the directions below to move the Mona Lisa, or use the arrow keys.</p>
+        <div id="arrow-keys">
+            <p id="up">up</p>
+            <p><span id="left">left</span>
+                <span id="down">down</span>
+                <span id="right">right</span>
+            </p>
+        </div>
+        <br>
+        <img id="mona" src="images_resized/pic0.png">
+        <script src="jquery-3.2.1.min.js"></script>
+        <script src="animate.js"></script>
+
+        <!-- Name: Claire Saliers
+             Lesson: jQuery
+        -->
+
+    </body>
+</html>
