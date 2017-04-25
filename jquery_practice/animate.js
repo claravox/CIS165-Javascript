@@ -4,6 +4,14 @@ $(function() {
     moveIt("#left", {"left": "-=100px"}, 37);
     moveIt("#down", {"top": "+=100px"}, 40);
     moveIt("#right", {"left": "+=100px"}, 39);
+    $("#directions").next().hide().prev().click(function() {
+        /* This might seem confusing. Basically, select the element
+        with the id of directions, then go to the next element, hide
+        it, then go to the one with the id of directions and listen
+        for a click. When it is clicked, toggle open or closed the
+        next element. */
+        $(this).next().slideToggle();
+    });
 });
 
 function moveIt(id, cssMovement, keypressed) {
