@@ -1,0 +1,50 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,600,700);
+html {
+    font-size: 62.5%;
+    box-sizing: border-box
+}
+
+*, :after, :before {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, ul, p {
+    margin: 0;
+    padding: 0;
+}
+h1 {
+	padding-bottom: .25em;
+	text-align: center;
+}
+h2 {
+
+	font-size: 150%;
+	padding: 1em 0;
+}
+li {
+	padding: 0 0.25em;
+	display: inline;
+}
+#caption, #gallery, #enlarge, #image_list {
+	text-align: center;
+}
+#enlarge {
+	padding-bottom: 2em;
+}
+#main_image {
+	/*position: abolute;*/
+	/*width: 100%;*/
+	height: 250px;/*Set the height to ensure that the heights will be the same, even if the widths are different. In practice, all images for a slide show would usually be the same size. */
+}
+p {
+	text-align: center;
+}
+.minus img {
+    border: 30px solid transparent;
+    border-image: url("../images/border2.png") 200;
+}
