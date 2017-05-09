@@ -1,0 +1,141 @@
+body { 
+  background-color: #b5a789;
+  font-family:      Georgia, "Times New Roman", Times, serif;
+  font-size:        small;
+  margin:           0px;
+}
+
+header.top {
+  background-color: #675c47;
+  margin:           10px;
+  height:           108px;
+}
+header.top img#headerSlogan {
+  float: right;
+}
+#award {
+  position: absolute;
+  top: 30px;
+  right: 365px;
+}
+#coupon {
+  position: absolute;
+  margin-top: 25px;
+  left: -90px;
+  transition: transform 2s;
+  -webkit-transition: -webkit-transform 2s;
+  -moz-transition: -moz-transform 2s;
+  -o-transition: -o-transform 2s;
+}
+#coupon a, img {
+  border: none;
+}
+#coupon:hover {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+}
+#tableContainer {
+  display: table;
+  border-spacing: 10px;
+}
+#tableRow {
+  display: table-row;
+}
+section#drinks {
+  display: table-cell;
+  background-color: #efe5d0;
+  width: 20%;
+  padding: 15px;
+  vertical-align: top;
+}
+section#drinks h3 {
+  text-transform: uppercase;
+}
+section#drinks ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+section#drinks ul li {
+  border-bottom: 1px dotted #B5A789;
+  font: 14px/1.5 Helvetica, Verdana, sans-serif;
+}
+section#drinks ul li:last-child {
+/*  border: none;
+*/
+}
+#main, #blog {
+  display: table-cell;
+  background:       #efe5d0 url(images/background.gif) top left;
+  font-size:        105%;
+  padding:          15px;
+  vertical-align: top;
+}
+
+aside {
+  display: table-cell;
+  background:       #efe5d0 url(images/background.gif) bottom right;
+  font-size:        105%;
+  padding:          15px;
+  vertical-align: top;
+}
+
+footer {
+  background-color: #675c47;
+  color:            #efe5d0;
+  text-align:       center;
+  padding:          15px;
+  margin:           10px;
+  font-size:        90%;
+  clear:            left;
+}
+
+h2 {
+  font-size:        120%;
+  color:            #954b4b;
+}
+
+.slogan { color: #954b4b; }
+
+.beanheading {
+  text-align:       center;
+  line-height:      1.8em;
+}
+
+a:link {
+  color:            #b76666;
+  text-decoration:  none;
+  border-bottom:    thin dotted #b76666;
+}
+a:visited {
+  color:            #675c47;
+  text-decoration:  none;
+  border-bottom:    thin dotted #675c47;
+}
+nav {
+  background-color: #efe5d0;
+  margin: 10px 10px 0px 10px;
+}
+nav ul {
+  margin: 0px;
+  list-style-type: none;
+  padding: 5px 0px 5px 0px;
+}
+nav ul li {
+  text-transform: uppercase;
+  display: inline;
+  padding: 5px 10px;
+}
+nav ul li a:link, nav ul li a:visited {
+  color: #954b4b;
+  border-bottom: none;
+  font-weight: bold;
+}
+nav ul li.selected {
+  background-color: #c8b99c;
+}
+
+

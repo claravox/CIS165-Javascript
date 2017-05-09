@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Enter the Contest</title>
+<link rel="stylesheet" type="text/css" href="css/styledform.css">
+<link rel="stylesheet" type="text/css" href="css/starbuzz.css">
+<link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.min.js">
+</head>
+<body>
+
+<header class="top">
+  <img id="headerLogo" src="images/headerlogo.gif" alt="Starbuzz Coffee Logo image">
+  <img id="headerSlogan" src="images/headerSlogan.gif" alt="Providing all the caffeine you need to power your life.">
+</header>
+
+<div id="award">
+  <img src="images/award.gif" alt="Roaster of the Year award">
+</div>
+<!--end award div-->
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="">Inventions</a></li>
+        <li><a href="">Recipes</a></li>
+        <li><a href="">Locations</a></li>
+        <li class="selected"><a href="form.html">Order Form</a></li>
+    </ul>
+</nav>
+<div id="bigcontainer"> <!--Added in a container div to center my order form in the middle.-->
+    <div id="container"> <!--Changed div id so that it would be unique for this form element.-->
+
+        <h1>Starbuzz Coffee Club Membership Form</h1>
+        <h2>Fill out the form below to become a member</h2>
+        <!--I added in HTML Special Characters for my quotation marks.-->
+        <section id="form">
+
+<!--With the POST method, all the form data is sent as part of the request and is invisible to the user.
+This is a good because you would be exposing sensitive data (name, address, phone number) in your browser URL bar. -->
+
+      <form id="order_form" name="order_form" action="form_js.html" method="get" >
+      <!--Use a <div> with the class “tableRow” for each row in the table.-->
+      <fieldset><!--<fieldset> element is used to group together common elements. -->
+      <legend class="order_now">Registration Information</legend>
+       <div class="tableRow">
+        <p>
+          <label for="email">Email Address:</label>
+          <input type="text" id="email" name="email"><span class="error"></span>
+        </p>
+      </div>
+
+      <div class="tableRow">
+        <p>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" placeholder="At least 6 characters"><span class="error"></span>
+        </p>
+      </div>
+
+      <div class="tableRow">
+        <p>
+          <label for="confirm">Confirm Password:</label>
+          <input type="password" id="confirm" name="confirm"><span class="error"></span>
+        </p>
+      </div>
+      <div class="tableRow">
+           <p>
+              <label>Offers:</label>
+              <input type="checkbox" name="offers" id="offers">
+              Yes! Send me emails about exclusive offers from Starbuzz.<br>
+           </p>
+      </div>
+      </fieldset>
+
+
+      <fieldset><!--<fieldset> element is used to group together common elements. -->
+        <legend class="order_now">Order Details</legend>
+        <div class="tableRow">
+            <p> Choose your beans: </p>
+            <p>
+                <select name="beans">
+                    <option value="House Blend">House Blend</option>
+                    <option value="Bolivia">Shade Grown Bolivia Supremo</option>
+                    <option value="Guatemala">Organic Guatemala</option>
+                    <option value="Kenya">Kenya</option>
+                </select>
+            </p>
+        </div>
+        <div class="tableRow">
+            <p> Type: </p>
+            <p>
+                 <label for="whole_beantype">Whole bean</label>
+                 <input type="radio" id="whole_beantype" name="beantype" value="whole">
+
+                <br>
+                 <label for="ground_beantype">Ground</label>
+                 <input type="radio" id="ground_beantype" name="beantype" value="ground" checked>
+            </p>
+        </div>
+        <div class="tableRow">
+            <p>
+                <label for="bags">Number of bags:</label>
+            </p>
+            <p>
+                <input type="number" id="bags" name="bags" min="1" max="10">
+            </p>
+        </div>
+        <div class="tableRow">
+            <p> Must arrive by date: </p>
+
+            <p>
+                <input type="text" name="datepicker" id="datepicker"><span class="error"></span>
+            </p>
+        </div>
+        <div class="tableRow">
+             <p><label>Extras:</label></p>
+            <p>
+                <input type="checkbox" name="extras[]" id="giftwrap">
+                Gift wrap<br>
+                <input type="checkbox" name="extras[]" id="catalog">
+                Include catalog with order </p>
+        </div>
+    </fieldset>
+
+    <fieldset><!--<fieldset> element is used to group together common elements. -->
+        <legend class="order_now">Ship to</legend>
+        <div class="tableRow">
+            <p> First Name: </p>
+            <p><input type="text" name="first_name" id="first_name"><span class="error"></span>
+            </p>
+        </div>
+        <div class="tableRow">
+            <p> Last Name: </p>
+            <p><input type="text" name="last_name" id="last_name"><span class="error"></span>
+            </p>
+        </div>
+        <div class="tableRow">
+            <p> Address: </p>
+            <p><input type="text" name="address" id="address"><span class="error"></span>
+            </p>
+        </div>
+        <div class="tableRow">
+            <p> City: </p>
+            <p><input type="text" name="city" id="city"><span class="error"></span>
+            </p>
+            <p></p>
+        </div>
+        <div class="tableRow">
+            <p> State: </p>
+            <p><input type="text" name="state" id="state" placeholder="CA"><span class="error"></span>
+            </p>
+            <p></p>
+        </div>
+        <div class="tableRow">
+            <p> Zip: </p>
+            <p><input type="text" name="zip" id="zip" placeholder="12345"><span class="error"></span>
+            </p>
+            <p></p>
+        </div>
+        <div class="tableRow">
+            <p> Phone: </p>
+            <p><input type="text" name="phone" id="phone" placeholder="999-999-9999"><span class="error"></span>
+            </p>
+        </div>
+        <div class="tableRow">
+            <p> Customer Comments: </p>
+            <p><textarea name="comments" rows="10" cols="48"></textarea></p>
+        </div>
+        <div class="tableRow">
+            <p></p>
+            <p><input type="submit" id="submit" name="submit" value="Join">
+            </p>
+        </div>
+    </fieldset>
+</form>
+    </section><!-- end main section -->
+   </div><!-- end container div -->
+</div><!-- end bigcontainer div -->
+
+<footer>
+    <p>&copy;2017, Marianne Gibson <br>
+        All trademarks and registered trademarks appearing on
+        this site are the property of their respective owners.</p>
+</footer>
+<!-- end footer -->
+ 	  <script src="js/jquery-3.1.1.min.js"></script>
+      <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+   	 <script src="js/order_form.js"></script>
+</body>
+</html>

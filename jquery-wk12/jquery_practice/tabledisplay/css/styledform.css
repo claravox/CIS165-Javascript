@@ -1,0 +1,59 @@
+body {
+	background-color: #b5a789;
+	margin: 20px;
+}
+#bigcontainer {
+    background: url(../images/background.gif) repeat scroll left top #EFE5D0;
+    margin: 10px;
+    min-width: 713px;
+    padding: 15px;
+}
+#container {
+    margin: 0 auto;
+    text-align: left;
+    width: 693px;
+}
+form {
+	display: table;
+	padding: 10px;
+	/*border: thin dotted #7e7e7e; I moved this style to the fieldset element*/
+	background-color: #e1ceb8;
+}
+form textarea {
+	display: table-cell;
+	width: 500px;
+	height: 200px;
+}
+div.tableRow {
+	display: table-row;
+}
+div.tableRow > p, div.tableRow > label, div.tableRow > input {
+	display: table-cell;
+	vertical-align: top;
+	padding: 3px;
+}
+div.tableRow label:first-child {
+	text-align: right;
+}
+p.heading {
+	font-weight: bold;
+}
+.order_now {
+	font-size: 110%;
+	color: #954b4b;
+}
+fieldset {
+	border: thin dotted #7e7e7e;
+}
+legend {
+	font-weight: bold;
+}
+.error {
+	color: red;
+	padding-left: 5px;
+}
+.ui-datepicker {
+	background-color: #E1CEB8;
+	border: thin dotted #7e7e7e;
+	padding: 5px;
+}
