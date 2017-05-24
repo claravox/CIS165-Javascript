@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     //$("#hours").spinner;
 
-    $("#calculate").click(addHours);
+    $("#calculate").click(sumUpHours);
 
     $("#org").focus();
 
@@ -15,10 +15,13 @@ $(document).ready(function() {
 
 var i = 0;
 var tableRowArray = [];
+var currentlyEditingRow = false;
+var numOfRow = 0;
 
 function showControls(event) {
-    $(".editbox").html("<input type=\"submit\" class=\"delete\" name=\"delete\" value=\"Delete\">");
+    $(".editbox").html("<input type=\"submit\" class=\"delete\" name=\"delete\" value=\"Delete\"><input type=\"submit\" class=\"edit\" name=\"edit\" value=\"Edit\">");
     $(".delete").click(deleteRow);
+    $(".edit").click(editRow);
 }
 
 function hideControls(event) {
@@ -35,19 +38,36 @@ function deleteRow() {
     }
 }
 
+function editRow() {
+    var rowToEdit = $(this).parent().parent().parent().attr("id");
+    numOfRow = rowToEdit.substring(3);
+    for (var j = 0; j < tableRowArray.length; j++) {
+        if (j == numOfRow) {
+            //Do something!
+            $("#add-row").effect("highlight", 1000);
+            $("#add-row #org").val(tableRowArray[j].org);
+            $("#add-row #hours").val(tableRowArray[j].hours);
+            $("#add-row #turned-in").val(tableRowArray[j].turnedIn);
+            $("#add-row #datepicker").val(tableRowArray[j].datePicker);
+            currentlyEditingRow = true;
+        }
+    }
+}
+
 function addToTable(event) {
     var tableRow = {};
     tableRow.org = $("#org").val();
     tableRow.hours = $("#hours").val();
     tableRow.turnedIn = $("#turned-in").val();
     tableRow.datePicker = $("#datepicker").val();
-/*
-    $("#volunteerTable tr:last").after("<tr>");
-    for (var i = 0; i < Object.keys(tableRow).length; i++) {
-        $("#volunteerTable tr:last").after("<td>" + tableRow.blah + "<td>");
+
+    if (currentlyEditingRow) {
+        currentlyEditingRow = false;
+        $("#row" + numOfRow).replaceWith("<tr id=\"row" + numOfRow + "\"  class=\"row\"><td>" + tableRow.org + "</td><td class=\"hours\">" + tableRow.hours + "</td><td>" + tableRow.turnedIn + "</td><td>" + tableRow.datePicker + "</td><td><span class=\"editbox\"> </span></td></tr>");
+        tableRowArray[numOfRow] = tableRow;
+        return;
     }
-    $("#volunteerTable tr:last").after("</tr>");
-*/
+
     //I'd like to be able to do this with a for loop,
     //but as you see from the code block above, it didn't work.
     $("#volunteerTable tr:last").after("<tr id=\"row" + i + "\"  class=\"row\"><td>" + tableRow.org + "</td><td class=\"hours\">" + tableRow.hours + "</td><td>" + tableRow.turnedIn + "</td><td>" + tableRow.datePicker + "</td><td><span class=\"editbox\"> </span></td></tr>");
@@ -69,7 +89,7 @@ function addToTable(event) {
     return tableRow;
 }
 
-function addHours() {
+function sumUpHours() {
     var totalHours = 0;
 
     //I used j because I had already used i for the ids of the new rows.

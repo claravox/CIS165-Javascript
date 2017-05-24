@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Volunteer Hours Spreadsheet</title>
   <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.min.css">
 </head>
 <body>
 <h1>Volunteer Hours</h1>
@@ -22,7 +23,7 @@
     </tr>
     <tr id="add-row">
       <td><input type="text" id="org" name="org"></td>
-      <td><input type="text" id="hours" name="hours"></td>
+      <td><input type="number" id="hours" name="hours"></td>
       <td><input type="checkbox" name="turned-in" id="turned-in"></td>
       <td><input type="text" name="datepicker" id="datepicker"></td>
       <td><span id="plus-sign"> </span><input type="submit" id="submit" name="submit" value="Add"></td>
@@ -30,7 +31,7 @@
 </table>
 <p>Total Hours: <input type="submit" id="calculate" name="calculate" value="Calculate"> <span id="total-hours"></span></p>
 <script src="js/jquery-3.2.1.min.js"></script>
-<script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
 <script src="js/spreadsheet.js"></script>
 
 
