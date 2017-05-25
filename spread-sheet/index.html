@@ -5,6 +5,8 @@
   <title>Volunteer Hours Spreadsheet</title>
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.min.css">
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 <h1>Volunteer Hours</h1>
@@ -15,18 +17,20 @@
       <th>Did you turn it in?</th>
       <th>Date turned in</th>
     </tr>
+    <!--
     <tr id="test-row">
       <td>SUHSD</td>
       <td>21</td>
       <td>yes</td>
       <td>5/17/17</td>
     </tr>
+    -->
     <tr id="add-row">
       <td><input type="text" id="org" name="org"></td>
-      <td><input type="number" id="hours" name="hours"></td>
+      <td><input id="hours" name="hours"></td>
       <td><input type="checkbox" name="turned-in" id="turned-in"></td>
       <td><input type="text" name="datepicker" id="datepicker"></td>
-      <td><span id="plus-sign"> </span><input type="submit" id="submit" name="submit" value="Add"></td>
+      <td><button type="submit" id="submit" name="submit" value="Add"><i class="fa fa-plus"></i></button></td>
     </tr>
 </table>
 <p>Total Hours: <input type="submit" id="calculate" name="calculate" value="Calculate"> <span id="total-hours"></span></p>
