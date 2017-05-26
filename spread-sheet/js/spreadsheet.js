@@ -84,22 +84,22 @@ function addToTable(event) {
     //This makes sure if there was an error before, that the previous warning is removed.
     $("#hours").removeAttr("title");
 
-    var tableRow = {};
-    tableRow.org = $("#org").val();
-    tableRow.hours = processNumber("#hours");
-    if (tableRow.hours == "bad") {
-        $("#hours").prop("title", "You entered an invalid amount of hours.").tooltip().effect("highlight", 1000);;
+    if ($("#hours").val() == "" || $("#org").val() == "" || $("#datepicker").val() == "") {
+        $("#add-row").prop("title", "You did not fill in one of the fields.").tooltip().effect("highlight", 1000);
         return;
     }
 
-    tableRow.turnedIn = processCheckMarkIn("#turned-in");
-    tableRow.datePicker = $("#datepicker").val();
+    var tableRow = addPropsToRow(tableRow);
+    if (tableRow.hours == "bad") {
+        $("#hours").prop("title", "You entered an invalid amount of hours.").tooltip().effect("highlight", 1000);
+        return;
+    }
 
     if (currentlyEditingRow) {
         //Set this to false for the next time the add button is clicked.
         currentlyEditingRow = false;
 
-        $("#row" + numOfRow).replaceWith("<tr id=\"row" + numOfRow + "\"  class=\"row\"><td>" + tableRow.org + "</td><td class=\"hours\">" + tableRow.hours + "</td><td>" + tableRow.turnedIn + "</td><td>" + tableRow.datePicker + "</td><td><span class=\"editbox\"> </span></td></tr>");
+        $("#row" + numOfRow).replaceWith(rowUpdate(tableRow, numOfRow));
         showControls();
 
         tableRowArray[numOfRow] = tableRow;
@@ -110,21 +110,36 @@ function addToTable(event) {
         return;
     }
 
+    tableRowArray[i] = tableRow;
+
     //I'd like to be able to do this with a for loop,
     //but as you see from the code block above, it didn't work.
-    $("#volunteerTable tr:last").after("<tr id=\"row" + i + "\"  class=\"row\"><td>" + tableRow.org + "</td><td class=\"hours\">" + tableRow.hours + "</td><td>" + tableRow.turnedIn + "</td><td>" + tableRow.datePicker + "</td><td><span class=\"editbox\"> </span></td></tr>");
+    $("#volunteerTable tr:last").after(rowUpdate(tableRow, i));
 
     //Add to i for the next time the Add button is clicked
     i++;
 
     console.log(tableRowArray);
 
-    tableRowArray.push(tableRow);
-
     //Show the delete and edit button when editbox is hovered
     $(".editbox").parent().hover(showControls);
 
     return tableRow;
+}
+
+function addPropsToRow(tableRow) {
+    var tableRow = {};
+    //Add each value from the input fields to the tableRow object
+    tableRow.org = $("#org").val();
+    tableRow.hours = processNumber("#hours");
+    tableRow.turnedIn = processCheckMarkIn("#turned-in");
+    tableRow.datePicker = $("#datepicker").val();
+    return tableRow;
+}
+
+//This function will put in a row in the table where the parameter says to.
+function rowUpdate(tableRow, numOfRow) {
+    return "<tr id=\"row" + numOfRow + "\"  class=\"row\"><td>" + tableRow.org + "</td><td class=\"hours\">" + tableRow.hours + "</td><td>" + tableRow.turnedIn + "</td><td>" + tableRow.datePicker + "</td><td><span class=\"editbox\"> </span></td></tr>";
 }
 
 function processNumber(hours) {
