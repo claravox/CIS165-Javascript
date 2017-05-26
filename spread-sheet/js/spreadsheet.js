@@ -14,7 +14,7 @@ $(document).ready(function() {
     $("#org").focus();
 
     //When the add button is clicked, the function addToTable is run.
-    $("#submit").click(addToTable);
+    $("#submit").click(addToTable(tableRowArray));
 
     //For debugging purposes. Shows what is in the local storage database.
     db.info().then(function (info) {
@@ -28,7 +28,7 @@ $(document).ready(function() {
 //Create a new database to store information even after refreshing the page.
 var db = new PouchDB("table1");
 
-//This is used to give names to each row.
+//This is used to give names to each new row.
 var i = 0;
 i._id = i;
 
@@ -45,6 +45,7 @@ var numOfRow = 0;
 function showRowsFromStorage() {
   db.allDocs({include_docs: true}, function(err, doc) {
     console.log(doc);
+    console.log("This is the doc.row" + doc.rows);
     addToTable(doc.rows);
   });
 }
@@ -118,25 +119,15 @@ function rowUpdate(tableRow, numOfRow) {
 }
 
 //This runs when the add button is clicked.
-function addToTable(event) {
+function addToTable(tableRowArray) {
     //This makes sure if there was an error before, that the previous warning is removed.
     $("#hours").removeAttr("title");
 
     //Set tableRow as an object
-    var tableRow = {};
-
-    //Add each value from the input fields to the tableRow object
-    tableRow.org = $("#org").val();
-    tableRow.hours = processNumber("#hours");
-    if (tableRow.hours == "bad") {
-        $("#hours").prop("title", "You entered an invalid amount of hours.").tooltip().effect("highlight", 1000);
-        return;
-    }
-    tableRow.turnedIn = processCheckMarkIn("#turned-in");
-    tableRow.datePicker = $("#datepicker").val();
+    var tableRow = addPropsToRow(tableRow);
 
     //This function should add to the database.
-    //updateDb(tableRow, "row", hours);
+    updateDb(tableRow, "row", hours);
 
     if (currentlyEditingRow) {
         //Set this to false for the next time the add button is clicked.
@@ -147,6 +138,8 @@ function addToTable(event) {
 
         //This makes sure the delete and edit buttons are still available.
         showControls();
+
+        var tableRow = addPropsToRow(tableRow);
 
         tableRowArray[numOfRow] = tableRow;
 
@@ -177,13 +170,25 @@ function addToTable(event) {
     return tableRow;
 }
 
-
+function addPropsToRow(tableRow) {
+    var tableRow = {};
+    //Add each value from the input fields to the tableRow object
+    tableRow.org = $("#org").val();
+    tableRow.hours = processNumber("#hours");
+    if (tableRow.hours == "bad") {
+        $("#hours").prop("title", "You entered an invalid amount of hours.").tooltip().effect("highlight", 1000);
+        return;
+    }
+    tableRow.turnedIn = processCheckMarkIn("#turned-in");
+    tableRow.datePicker = $("#datepicker").val();
+    return tableRow;
+}
 //This is for my reference: updateDb(tableRow, "row", hours);
-/*
+
 function updateDb(doc, phrase, partToUpdate) {
     doc._id = phrase + i;
     db.put(doc);
-}*/
+}
 
 function processNumber(hours) {
     var hoursVal = $(hours).val();
@@ -192,8 +197,6 @@ function processNumber(hours) {
     } else {
         return hoursVal;
     }
-
-
 }
 
 function processCheckMarkIn(checkMarkId) {
