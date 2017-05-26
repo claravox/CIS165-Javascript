@@ -26,10 +26,12 @@ $(document).ready(function() {
 });
 
 //Create a new database to store information even after refreshing the page.
-var db = new PouchDB("table");
+var db = new PouchDB("table1");
 
 //This is used to give names to each row.
 var i = 0;
+i._id = i;
+
 
 //This is the array that keeps track of all the added rows.
 var tableRowArray = [];
@@ -41,7 +43,7 @@ var currentlyEditingRow = false;
 var numOfRow = 0;
 
 function showRowsFromStorage() {
-  db.allDocs({include_docs: true, descending: true}, function(err, doc) {
+  db.allDocs({include_docs: true}, function(err, doc) {
     console.log(doc);
     addToTable(doc.rows);
   });
@@ -77,6 +79,8 @@ function deleteRow() {
             db.get("row" + j).then(function (doc) {
                 console.log("row" + j);
                 return db.remove(doc);
+            }).catch(function (err) {
+                console.log(err);
             });
 
         }
