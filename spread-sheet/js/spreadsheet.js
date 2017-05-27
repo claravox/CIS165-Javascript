@@ -1,43 +1,43 @@
 $(document).ready(function() {
-    //Turns the date text field into a date picker.
+    //This block of code uses jquery ui to add a datepicker, a spinner, and a button.
     $("#datepicker").datepicker({
     	showButtonPanel: true,
         maxDate: "+0d"
     });
-
     $("#hours").spinner();
-
     $( "input[type=submit], button, .delete, .edit" ).button();
 
+    //When the user clicks the calculate button, the function sumUpHours is run.
     $("#calculate").click(sumUpHours);
 
+    //This might make it easier to type in right away.
     $("#org").focus();
 
-    $("#submit").click(addToTable);
+    //When the add button is clicked, the function addToTable is run.
+    $("#submit").click(addToTable(tableRowArray));
 
 
 
 });
 
+//This is used to give names to each new row.
 var i = 0;
+
+//This is the array that keeps track of all the added rows.
 var tableRowArray = [];
+console.log("This is tableRowArray " + tableRowArray);
+//This will change if the user is editing a row.
 var currentlyEditingRow = false;
+
+//This is the number of the row currently being edited.
 var numOfRow = 0;
 
-//var newRowContents = "<tr id=\"row" + numOfRow + "\"  class=\"row\"><td>" + tableRow.org + "</td><td class=\"hours\">" + tableRow.hours + "</td><td>" + tableRow.turnedIn + "</td><td>" + tableRow.datePicker + "</td><td><span class=\"editbox\"> </span></td></tr>"
-
-
-function checkValidity() {
-    if ($(this).spinner( "isValid" )) {
-        console.log("valid");
-    } else {
-        console.log("Bad bad");
-    }
 }
 
+//This will show the delete and edit buttons for each row.
 function showControls(event) {
     $(".editbox").html("<button type=\"submit\" class=\"delete\" name=\"delete\" value=\"Delete\"><i class=\"fa fa-trash\"></i></button><button type=\"submit\" class=\"edit\" name=\"edit\" value=\"Edit\"><i class=\"fa fa-edit\"></i></button>");
-    $( ".delete, .edit" ).button()
+    $( ".delete, .edit" ).button();
     $(".delete").click(deleteRow);
     $(".edit").click(editRow);
 }
@@ -49,8 +49,13 @@ function showControls(event) {
 }*/
 
 function deleteRow() {
+    //This will hide the whole row from the viewer, but it doesn't actually delete the row.
     var rowToDelete = $(this).parent().parent().parent().hide().attr("id");
+
+    //This takes the last part of the id of the row for the row number.
     var numOfRow = rowToDelete.substring(3);
+    console.log(numOfRow);
+    //Goes through the table array to see if its number matches.
     for (var j = 0; j < tableRowArray.length; j++) {
         if (j == numOfRow) {
             tableRowArray[j].ignore = true;
@@ -58,12 +63,14 @@ function deleteRow() {
     }
 }
 
+//This is triggered when the user clicks on the edit button.
 function editRow() {
+    //This find the id of the row, and then its number.
     var rowToEdit = $(this).parent().parent().parent().attr("id");
     numOfRow = rowToEdit.substring(3);
+
     for (var j = 0; j < tableRowArray.length; j++) {
         if (j == numOfRow) {
-
 
             $("#add-row").effect("highlight", 1000);
             $("#add-row #org").val(tableRowArray[j].org);
@@ -74,13 +81,20 @@ function editRow() {
 
             $("#submit").html("<i class=\"fa fa-edit\"></i>");
 
+            //This will change the behavior of addToTable.
             currentlyEditingRow = true;
         }
     }
 
 }
 
-function addToTable(event) {
+//This function will put in a row in the table where the parameter says to.
+function rowUpdate(tableRow, numOfRow) {
+    return "<tr id=\"row" + numOfRow + "\"  class=\"row\"><td>" + tableRow.org + "</td><td class=\"hours\">" + tableRow.hours + "</td><td>" + tableRow.turnedIn + "</td><td>" + tableRow.datePicker + "</td><td><span class=\"editbox\"> </span></td></tr>";
+}
+
+//This runs when the add button is clicked.
+function addToTable(tableRowArray) {
     //This makes sure if there was an error before, that the previous warning is removed.
     $("#hours").removeAttr("title");
 
@@ -89,42 +103,55 @@ function addToTable(event) {
         return;
     }
 
+    //Set tableRow as an object
     var tableRow = addPropsToRow(tableRow);
     if (tableRow.hours == "bad") {
         $("#hours").prop("title", "You entered an invalid amount of hours.").tooltip().effect("highlight", 1000);
         return;
     }
 
+    //This function should add to the database.
+    updateDb(tableRow, "row");
+
     if (currentlyEditingRow) {
         //Set this to false for the next time the add button is clicked.
         currentlyEditingRow = false;
 
+        //Instead of adding another row, the row edited is replaced.
         $("#row" + numOfRow).replaceWith(rowUpdate(tableRow, numOfRow));
+
+        //This makes sure the delete and edit buttons are still available.
         showControls();
+
 
         tableRowArray[numOfRow] = tableRow;
 
+        //Change the Add icon back to a plus, since we are not editing a row anymore.
         $("#submit").html("<i class=\"fa fa-plus\"></i>");
 
         //This stops the rest of the code in the addToTable function from running.
         return;
     }
 
+    //Add the local variable to the global variable tableRowArray so it can be
+    //accessed later.
     tableRowArray[i] = tableRow;
 
     //I'd like to be able to do this with a for loop,
-    //but as you see from the code block above, it didn't work.
+    //but it didn't work.
     $("#volunteerTable tr:last").after(rowUpdate(tableRow, i));
 
     //Add to i for the next time the Add button is clicked
     i++;
 
+    //For debugging purposes.
     console.log(tableRowArray);
+
+
 
     //Show the delete and edit button when editbox is hovered
     $(".editbox").parent().hover(showControls);
 
-    return tableRow;
 }
 
 function addPropsToRow(tableRow) {
@@ -132,14 +159,19 @@ function addPropsToRow(tableRow) {
     //Add each value from the input fields to the tableRow object
     tableRow.org = $("#org").val();
     tableRow.hours = processNumber("#hours");
+    if (tableRow.hours == "bad") {
+        $("#hours").prop("title", "You entered an invalid amount of hours.").tooltip().effect("highlight", 1000);
+        return;
+    }
     tableRow.turnedIn = processCheckMarkIn("#turned-in");
     tableRow.datePicker = $("#datepicker").val();
     return tableRow;
 }
+//This is for my reference: updateDb(tableRow, "row", hours);
 
-//This function will put in a row in the table where the parameter says to.
-function rowUpdate(tableRow, numOfRow) {
-    return "<tr id=\"row" + numOfRow + "\"  class=\"row\"><td>" + tableRow.org + "</td><td class=\"hours\">" + tableRow.hours + "</td><td>" + tableRow.turnedIn + "</td><td>" + tableRow.datePicker + "</td><td><span class=\"editbox\"> </span></td></tr>";
+function updateDb(doc, phrase) {
+    doc._id = phrase + i;
+    db.put(doc._id);
 }
 
 function processNumber(hours) {
@@ -149,8 +181,6 @@ function processNumber(hours) {
     } else {
         return hoursVal;
     }
-
-
 }
 
 function processCheckMarkIn(checkMarkId) {
@@ -175,15 +205,18 @@ function processCheckMarkOut(checkMarkValue, checkMarkId) {
 }
 
 function sumUpHours() {
+    //totalHours is a number, set first at zero everytime calculated.
     var totalHours = 0;
 
     //I used j because I had already used i for the ids of the new rows.
     for (var j = 0; j < tableRowArray.length; j++) {
         if (!tableRowArray[j].ignore) {
+            //+= adds the new value to the previous value.
             totalHours += Number(tableRowArray[j].hours);
         }
     }
 
+    //This is just some grammar fixing.
     if (totalHours == 1) {
         $("#total-hours").text(totalHours + " hour");
     } else {
